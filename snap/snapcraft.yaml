@@ -172,10 +172,6 @@ slots:
         - $SNAP/share/icons/Papirus-Dark-Maia
         - $SNAP/share/icons/Papirus-Light-Maia
         - $SNAP/share/icons/Papirus-Maia
-        - $SNAP/share/icons/elementary-xfce
-        - $SNAP/share/icons/elementary-xfce-dark
-        - $SNAP/share/icons/elementary-xfce-darker
-        - $SNAP/share/icons/elementary-xfce-darkest
         - $SNAP/share/icons/handhelds
         - $SNAP/share/icons/redglass
         - $SNAP/share/icons/whiteglass
@@ -480,28 +476,6 @@ parts:
     build-packages:
       - libgtk-3-dev
       - libglib2.0-dev
-
-  # Elementary-xfce icon theme - Xubuntu default
-  elementary-xfce-icon-theme:
-    after: [utils]
-    plugin: autotools
-    autotools-configure-parameters:
-      - --prefix=/
-    source: https://github.com/shimmerproject/elementary-xfce.git
-    source-type: git
-    source-tag: v0.19
-    source-depth: 1
-    override-build: |
-      craftctl default
-      $CRAFT_STAGE/update-icon-cache.sh $CRAFT_PART_INSTALL/share/icons
-    stage:
-      - share/icons/elementary-xfce
-      - share/icons/elementary-xfce-dark
-      - share/icons/elementary-xfce-darker
-      - share/icons/elementary-xfce-darkest
-    build-packages:
-      - libgtk-3-dev
-      - optipng
 
   dart-sass:
     plugin: nil
