@@ -62,8 +62,6 @@ slots:
         - $SNAP/share/gtk2/Yaru-MATE-dark
         - $SNAP/share/gtk2/Yaru-mate
         - $SNAP/share/gtk2/Yaru-mate-dark
-        - $SNAP/share/gtk2/Greybird
-        - $SNAP/share/gtk2/Greybird-dark
         - $SNAP/share/gtk2/Materia
         - $SNAP/share/gtk2/Materia-compact
         - $SNAP/share/gtk2/Materia-dark
@@ -115,8 +113,6 @@ slots:
         - $SNAP/share/themes/Yaru-MATE-dark
         - $SNAP/share/themes/Yaru-mate
         - $SNAP/share/themes/Yaru-mate-dark
-        - $SNAP/share/themes/Greybird
-        - $SNAP/share/themes/Greybird-dark
         - $SNAP/share/themes/Materia
         - $SNAP/share/themes/Materia-compact
         - $SNAP/share/themes/Materia-dark
@@ -458,33 +454,6 @@ parts:
       $CRAFT_STAGE/update-icon-cache.sh $CRAFT_PART_INSTALL/share/icons
     stage:
       - share/icons/Papirus-*
-
-  # Greybird gtk themes - Xubuntu default
-  greybird-gtk-theme:
-    after: [utils]
-    plugin: meson
-    source: https://github.com/shimmerproject/Greybird.git
-    source-type: git
-    source-depth: 1
-    meson-parameters: [--prefix=/]
-    override-build: |
-      craftctl default
-      $CRAFT_STAGE/split-gtk-theme.sh $CRAFT_PART_INSTALL
-    stage:
-      - share/gtk2/*/gtk-2.0
-      - share/themes/*/gtk-3*
-    build-packages:
-      - libgtk-3-dev
-      - libglib2.0-dev
-
-  dart-sass:
-    plugin: nil
-    source: https://github.com/sass/dart-sass/releases/download/1.77.5/dart-sass-1.77.5-linux-x64.tar.gz
-    override-build: |
-      mkdir -p $CRAFT_STAGE/bin
-      cp -a sass src $CRAFT_STAGE/bin
-    prime:
-      - -*
 
   # Materia icons - Ubuntu Studio default
   materia-gtk-theme:
